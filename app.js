@@ -20,6 +20,14 @@ app.set('view engine', 'ejs');
 
 // Routes
 
+app.get('/', function(req, res, next) {
+  var voterId = Math.floor(Math.random() * 100) + 1;
+  res.render('index', {
+    title: 'Count Me Up',
+    voterId: voterId
+  });
+});
+
 // Increment the vote count for the given candidate by 1
 app.post('/vote/:voterId/:candidate', function (req, rs) {
   var voterId = req.params.voterId;
@@ -40,7 +48,10 @@ app.post('/vote/:voterId/:candidate', function (req, rs) {
   // Update vote count for the given candidate
   VoteCount.updateVote(candidate, {}, function (err, response) {
     if (err) throw err;
-    rs.sendStatus(200);
+    rs.render('index', {
+      title: 'Count Me Up',
+      voterId: voterId
+    });
     // TODO: Check to see if the user has voted already
   });
 });
