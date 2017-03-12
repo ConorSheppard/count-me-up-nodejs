@@ -25,8 +25,8 @@ module.exports.getNumVotes = function(voterId, callback) {
 };
 
 // Increment vote count for given voterId
-module.exports.updateNumVotes = function (voterId, newNumVotes, options, callback) {
+module.exports.updateNumVotes = function (voterId, options, callback) {
   var query = { voterId: voterId };
-  var update = { numVotes: newNumVotes };
+  var update = { $inc: { numVotes: 1 } };
   VoterInfo.findOneAndUpdate(query, update, options, callback);
 };

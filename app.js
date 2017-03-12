@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/vote');
 var db = mongoose.connection;
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Routes
 
@@ -24,9 +28,8 @@ app.post('/vote/:voterId/:candidate', function (req, rs) {
     var numVotes = voter[0].numVotes;
     // Check if voter has cast 3 votes
     if (numVotes < 3) {
-      var newNumVotes = numVotes + 1;
       // Update the number of votes cast for the given voter
-      VoterInfo.updateNumVotes(voterId, newNumVotes, {}, function (err, resDoc) {
+      VoterInfo.updateNumVotes(voterId, {}, function (err, resDoc) {
         if (err) throw err;
       });
     } else {
@@ -34,17 +37,12 @@ app.post('/vote/:voterId/:candidate', function (req, rs) {
       rs.send(JSON.stringify(errorMessage));
     }
   });
-  VoteCount.getVotes(function (err, res) {
+  // Update vote count for the given candidate
+  VoteCount.updateVote(candidate, {}, function (err, response) {
     if (err) throw err;
-    console.log(candidate + "'s vote count: " + res[0].voteCount);
-    var newVoteCount = res[0].voteCount + 1;
-    // Update vote count for the given candidate
-    VoteCount.updateVote(candidate, newVoteCount, {}, function (err, response) {
-      if (err) throw err;
-      rs.sendStatus(200);
-      // TODO: Check to see if the user has voted already
-    });
-  }, candidate);
+    rs.sendStatus(200);
+    // TODO: Check to see if the user has voted already
+  });
 });
 
 // Return the number of votes for the given candidate

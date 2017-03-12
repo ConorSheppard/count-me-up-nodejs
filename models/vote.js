@@ -25,8 +25,8 @@ module.exports.getVotes = function(callback, candidate) {
 };
 
 // Update the vote count for the given candidate
-module.exports.updateVote = function(candidateName, newVoteCount, options, callback) {
+module.exports.updateVote = function(candidateName, options, callback) {
   var query = { candidateName: candidateName };
-  var update = { voteCount: newVoteCount };
+  var update = { $inc: { voteCount: 1 } };
   VoteCount.findOneAndUpdate(query, update, options, callback);
 };
