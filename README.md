@@ -1,6 +1,6 @@
 ##Vote Counter Exercise built with Node.js with tests written in Java
 
-![Homepage Screenshot](/blob/master/Screen%20Shot%202017-03-13%20at%2002.23.45.png?raw=true "Application Homepage")
+![Homepage Screenshot](/screenshots/Screen Shot Homepage.png?raw=true "Application Homepage")
 
 **Spec:**
 
