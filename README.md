@@ -69,6 +69,8 @@ By running CountMeUpTester.java the server is hit with 300 concurrent http reque
 
 **Application Performance**
 
+![Application Performance](/screenshots/Screen Shot Performance.png?raw=true "Application Performance Test")
+
 The file PerformanceTest.java tests the speed of the system to see what speed the server can return the candidate vote counts.
 
 When run this file consistently outputs something similar to the following screenshot with a time of 205502494 nanoseconds or 0.2 seconds, well under the required time of 1 second.
