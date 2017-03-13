@@ -18,19 +18,19 @@ This system is a RESTful API for dealing with user votes. It is meant to be ligh
 
 It includes the following endpoints:
 
-GET /index Renders the homepage of the application
+*GET /index* Renders the homepage of the application
 
-POST /vote/:voterId/:candidate Facilitates voting for a candidate. Increments the vote count for the given candidate and increments the number of votes cast by the given user.
+*POST /vote/:voterId/:candidate* Facilitates voting for a candidate. Increments the vote count for the given candidate and increments the number of votes cast by the given user.
 
-GET /vote/count/:candidate Returns the number of votes for the given candidate.
+*GET /vote/count/:candidate* Returns the number of votes for the given candidate.
 
 The following endpoints were used to seed the DB with user and candidate info and for debugging purposes:
 
-GET /votes/cast/:voterId Return the number of votes cast for the given user.
+*GET /votes/cast/:voterId* Return the number of votes cast for the given user.
 
-POST /new/candidate/:candidateId Creates a new candidate in the DB.
+*POST /new/candidate/:candidateId* Creates a new candidate in the DB.
 
-POST /new/voter/:voterId Creates a new user in the DB.
+*POST /new/voter/:voterId* Creates a new user in the DB.
 
 **Dependencies**
 
