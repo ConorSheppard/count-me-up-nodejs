@@ -55,7 +55,9 @@ The brains of this application, where the requests are handled and the database 
 Before the RESTful API can be used it is important to seed the DB with candidate and user information to emulate a real-world situation.
 
 To do this cd into the directory where you have cloned the repo. Make sure you are in the folder that includes the app.js file. 
+
 Now run:
+
 	- mongod
 
 		and in another terminal tab/window run
